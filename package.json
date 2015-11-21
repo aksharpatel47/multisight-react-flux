@@ -4,7 +4,7 @@
   "description": "My own implementation of Cory House's \"Building Applications with React and Flux\" course of pluralsight.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "cd server && node main.server.js"
   },
   "author": "Akshar Patel",
   "license": "ISC",

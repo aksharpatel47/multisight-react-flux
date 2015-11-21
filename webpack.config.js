@@ -4,7 +4,6 @@ module.exports = {
 		path: './builds',
 		filename: 'bundle.js'
 	},
-	watch: true,
 	module: {
 		loaders: [
 			{
