@@ -1,0 +1,5 @@
+.idea
+builds
+server/knexfile.js
+node_modules
+multisight.sqlite
