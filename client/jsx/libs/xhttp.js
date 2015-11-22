@@ -18,7 +18,7 @@ function ajaxRequest (reqType, url, data) {
 		if (!!data && (typeof data === 'object' || reqType !== 'GET')) {
 			request.setRequestHeader('Content-Type', 'application/json');
 			data = JSON.stringify(data);
-			console.log(data);
+			console.log('Sending the following data with request', data);
 		}
 		request.send(data);
 	});

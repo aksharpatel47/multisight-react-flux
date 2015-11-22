@@ -3,7 +3,7 @@
  */
 import React, {Component} from 'react';
 import history from '../../history';
-
+import CourseActions from '../../actions/course.actions';
 import AuthorStore from '../../stores/author.store';
 
 class CourseAdd extends Component {
@@ -11,20 +11,20 @@ class CourseAdd extends Component {
 		super(props);
 		this.state = {
 			title: '',
-			authorId: null,
+			author_id: null,
 			category: '',
 			length: ''
 		}
 	}
 
 	valuesChange() {
-		let title = this.refs.title.value.trim();
-		let authorId = this.refs.authorId.value.trim();
-		let category = this.refs.category.value.trim();
-		let length = this.refs.length.value.trim();
+		let title = this.refs.title.value;
+		let author_id = this.refs.author_id.value;
+		let category = this.refs.category.value;
+		let length = this.refs.length.value;
 		this.setState({
 			title,
-			authorId,
+			author_id,
 			category,
 			length
 		});
@@ -32,7 +32,16 @@ class CourseAdd extends Component {
 
 	addCourse(e) {
 		e.preventDefault();
-
+		let {title, author_id, category, length} = this.refs;
+		CourseActions.add({
+			title: title.value.trim(),
+			author_id: author_id.value.trim(),
+			category: category.value.trim(),
+			length: length.value.trim()
+		}).then(() => {
+			history.pushState(null, '/courses');
+			console.log('course created');
+		});
 	}
 
 	render() {
@@ -47,10 +56,10 @@ class CourseAdd extends Component {
 				<form>
 					<label htmlFor="title">Title</label>
 					<input type="text" ref="title" id="title"
-					       value={this.state.title} onChange={() => this.valuesChange()}/>
+					       value={this.state.title} onChange={() => this.valuesChange()} autoFocus/>
 					<br/>
 					<label htmlFor="author">Author</label>
-					<select id="author" ref="authorId" value={this.state.authorId}
+					<select id="author" ref="author_id" value={this.state.author_id}
 							onChange={() => this.valuesChange()}>
 						{authorList}
 					</select>
@@ -62,6 +71,7 @@ class CourseAdd extends Component {
 					<label htmlFor="length">Length</label>
 					<input type="text" ref="length" id="length"
 							value={this.state.length} onChange={() => this.valuesChange()} />
+					<br/>
 					<button onClick={(e) => this.addCourse(e)}>Add</button>
 				</form>
 			</div>

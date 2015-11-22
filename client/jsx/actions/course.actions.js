@@ -7,29 +7,38 @@ import xhttp from '../libs/xhttp';
 
 let CourseActions = {
 	add(data) {
-		xhttp.post('/api/courses', data).then((result) => {
+		return xhttp.post('/api/courses', data).then((result) => {
 			if (result.status === 201) {
+				let id = JSON.parse(result.response)[0];
+				data.id = id;
 				Dispatcher.dispatch({
 					type: ADD_COURSE,
-					payload: data
+					payload: {
+						id: id,
+						data
+					}
 				});
 			}
 		});
 	},
 
 	edit(id, data) {
-		xhttp.put(`/api/courses/${id}`, data).then((result) => {
+		return xhttp.put(`/api/courses/${id}`, data).then((result) => {
 			if (result.status === 200) {
 				Dispatcher.dispatch({
 					type: EDIT_COURSE,
-					payload: data
+					payload: {
+						id,
+						data
+					}
 				});
 			}
 		});
 	},
 
 	delete(id) {
-		xhttp.delete(`api/courses/${id}`).then((result) => {
+		console.log(id);
+		return xhttp.delete(`api/courses/${id}`).then((result) => {
 			if (result.status === 200) {
 				Dispatcher.dispatch({
 					type: DELETE_COURSE,

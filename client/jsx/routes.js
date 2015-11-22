@@ -12,6 +12,7 @@ import AuthorEdit from './components/author/AuthorEdit';
 import CoursesPage from './components/course/CoursesPage';
 import CoursesList from './components/course/CoursesList';
 import CourseAdd from './components/course/CourseAdd';
+import CourseEdit from './components/course/CourseEdit';
 
 import AboutPage from './components/about/AboutPage';
 
@@ -20,12 +21,13 @@ export default (
 		<IndexRoute component={Default}/>
 		<Route path='authors' component={AuthorsPage}>
 			<IndexRoute component={AuthorsList}/>
-			<Route path='add' component={AuthorAdd} />
-			<Route path='edit/:id' component={AuthorEdit} />
+			<Route path='add' component={AuthorAdd}/>
+			<Route path='edit/:id' component={AuthorEdit}/>
 		</Route>
 		<Route path='courses' component={CoursesPage}>
 			<IndexRoute component={CoursesList}/>
 			<Route path='add' component={CourseAdd}/>
+			<Route path='edit/:id' component={CourseEdit}/>
 		</Route>
 		<Route path='about' component={AboutPage}/>
 	</Route>

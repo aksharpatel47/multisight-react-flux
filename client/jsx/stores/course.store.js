@@ -10,7 +10,7 @@ let COURSE_CHANGE = 'COURSE_CHANGE';
 let _courses = {};
 
 const CourseStore = Object.assign({}, EventEmitter.prototype, {
-	onChangeListener(cb) {
+	addChangeListener(cb) {
 		this.on(COURSE_CHANGE, cb);
 	},
 
@@ -24,6 +24,10 @@ const CourseStore = Object.assign({}, EventEmitter.prototype, {
 
 	getAllCourses() {
 		return _courses;
+	},
+
+	getCourseInfo(id) {
+		return _courses[id];
 	}
 });
 
@@ -33,14 +37,15 @@ Dispatcher.register((action) => {
 			action.payload.forEach((course) => {
 				_courses[course.id] = course;
 			});
+			console.log(_courses);
 			break;
 		case ADD_COURSE:
-			let course = action.payload.course;
-			_courses[course.id] = course;
+			let course = action.payload;
+			_courses[course.id] = course.data;
 			break;
 		case EDIT_COURSE:
-			let updatedCourse = action.payload.course;
-			_courses[updatedCourse.id] = updatedCourse;
+			let updatedCourse = action.payload;
+			_courses[updatedCourse.id] = updatedCourse.data;
 			break;
 		case DELETE_COURSE:
 			delete _courses[action.payload.id];
@@ -48,3 +53,5 @@ Dispatcher.register((action) => {
 			break;
 	}
 });
+
+export default CourseStore;

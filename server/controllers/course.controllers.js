@@ -13,15 +13,15 @@ exports.getAllCourses = function (req, res) {
 
 exports.addCourse = function (req, res) {
 	var title = req.body.title,
-		authorId = req.body.authorId,
+		author_id = req.body.author_id,
 		category = req.body.category,
 		length = req.body.length;
 
 	db
-		.insert({title: title, author_id: authorId, category: category, length: length})
+		.insert({title: title, author_id: author_id, category: category, length: length}, 'id')
 		.into('courses')
-		.then(() => {
-			res.sendStatus(201);
+		.then((id) => {
+			res.status(201).send(id);
 		})
 		.catch((err) => {
 			res.status(400).send(err);
@@ -31,7 +31,7 @@ exports.addCourse = function (req, res) {
 exports.editCourse = function (req, res) {
 	var id = req.params.id,
 		title = req.body.title,
-		authorId = req.body.authorId,
+		author_id = req.body.author_id,
 		category = req.body.category,
 		length = req.body.length;
 
@@ -39,7 +39,7 @@ exports.editCourse = function (req, res) {
 		.where('id', id)
 		.update({
 			title: title,
-			author_id: authorId,
+			author_id: author_id,
 			category: category,
 			length: length
 		})
@@ -52,8 +52,8 @@ exports.editCourse = function (req, res) {
 };
 
 exports.deleteCourse = function (req, res) {
-	var id = req.params.id;
-
+	var id = Number(req.params.id);
+	console.log(id);
 	db('courses')
 		.where('id', id)
 		.del()
