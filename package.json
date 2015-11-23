@@ -1,7 +1,7 @@
 {
   "name": "pluralsight-react-redux",
   "version": "1.0.0",
-  "description": "My own implementation of Cory House's \"Building Applications with React and Flux\" course of pluralsight.",
+  "description": "My own implementation of Cory House's \"Building Applications with React and Flux\" course on pluralsight.",
   "main": "index.js",
   "scripts": {
     "start": "cd server && node main.server.js"
