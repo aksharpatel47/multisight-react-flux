@@ -2,7 +2,7 @@
  * Created by aksharpatel on 21/11/15.
  */
 import {ADD_AUTHOR, DELETE_AUTHOR, EDIT_AUTHOR} from '../constants/actionTypes';
-import xhttp from '../libs/xhttp';
+import * as xhttp from '../libs/xhttp';
 import Dispatcher from '../appDispatcher';
 
 var AuthorActions = {
@@ -22,7 +22,7 @@ var AuthorActions = {
 	},
 
 	delete(id) {
-		return xhttp.delete(`/api/authors/${id}`).then((result) => {
+		return xhttp.del(`/api/authors/${id}`).then((result) => {
 			if (result.status === 200) {
 				Dispatcher.dispatch({
 					type: DELETE_AUTHOR,

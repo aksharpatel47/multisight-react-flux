@@ -3,7 +3,7 @@
  */
 import Dispatcher from '../appDispatcher';
 import {ADD_COURSE, EDIT_COURSE, DELETE_COURSE} from '../constants/actionTypes';
-import xhttp from '../libs/xhttp';
+import * as xhttp from '../libs/xhttp';
 
 let CourseActions = {
 	add(data) {
@@ -38,7 +38,7 @@ let CourseActions = {
 
 	delete(id) {
 		console.log(id);
-		return xhttp.delete(`api/courses/${id}`).then((result) => {
+		return xhttp.del(`api/courses/${id}`).then((result) => {
 			if (result.status === 200) {
 				Dispatcher.dispatch({
 					type: DELETE_COURSE,

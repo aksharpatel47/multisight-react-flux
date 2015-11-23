@@ -3,7 +3,7 @@
  */
 import Dispatcher from '../appDispatcher';
 import {INITIALIZE_AUTHORS, INITIALIZE_COURSES} from '../constants/actionTypes';
-import xhttp from '../libs/xhttp';
+import * as xhttp from '../libs/xhttp';
 
 let initializeActions = {
 	init() {

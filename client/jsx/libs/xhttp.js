@@ -2,7 +2,7 @@
  * Created by aksharpatel on 20/11/15.
  */
 
-function ajaxRequest (reqType, url, data) {
+function ajaxRequest(reqType, url, data) {
 	return new Promise((resolve, reject) => {
 		let request = new XMLHttpRequest();
 		request.open(reqType, url);
@@ -15,7 +15,7 @@ function ajaxRequest (reqType, url, data) {
 			}
 		};
 
-		if (!!data && (typeof data === 'object' || reqType !== 'GET')) {
+		if (!!data && typeof data === 'object') {
 			request.setRequestHeader('Content-Type', 'application/json');
 			data = JSON.stringify(data);
 			console.log('Sending the following data with request', data);
@@ -24,22 +24,19 @@ function ajaxRequest (reqType, url, data) {
 	});
 }
 
-let xhttp = {
-	get(url) {
-		return ajaxRequest('GET', url);
-	},
 
-	post(url, data) {
-		return ajaxRequest('POST', url, data);
-	},
+export function get(url) {
+	return ajaxRequest('GET', url);
+}
 
-	put(url, data) {
-		return ajaxRequest('PUT', url, data);
-	},
+export function post(url, data) {
+	return ajaxRequest('POST', url, data);
+}
 
-	delete(url, data) {
-		return ajaxRequest('DELETE', url, data);
-	}
-};
+export function put(url, data) {
+	return ajaxRequest('PUT', url, data);
+}
 
-export default xhttp;
+export function del(url, data) {
+	return ajaxRequest('DELETE', url, data);
+}
