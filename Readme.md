@@ -9,8 +9,9 @@ the following commands in the root directory.
 ```
 > npm i                  // Installs all the dependencies
 > npm i -g webpack knex  // Installs webpack and knex globally
-> webpack                // Compiles and bundles JSX
-> cd server && knex migrate:latest && cd ..  // Creates sqlite database
+> webpack                // Bundles and compiles JSX
+> cp knexfile.example.js knexfile.js
+> knex migrate:latest    // Creates sqlite database
 > npm start              // Starts the server on port 8000
 ```
 

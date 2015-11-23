@@ -4,7 +4,7 @@ module.exports = {
 	development: {
 		client: 'sqlite3',
 		connection: {
-			filename: './multisight.sqlite'
+			filename: __dirname + '/multisight.sqlite'
 		},
 		debug: true
 	},
